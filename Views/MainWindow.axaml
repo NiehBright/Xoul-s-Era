@@ -1,0 +1,123 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Xoul_s_Era.ViewModels"
+        x:Class="Xoul_s_Era.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/Logo.png"
+        Title="Xoul's Era"
+        Width="1280" Height="720"
+        MinWidth="1024" MinHeight="576"
+        WindowStartupLocation="CenterScreen"
+        CanResize="True">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<Grid>
+		<!-- Ảnh nền -->
+		<Image Source="/Assets/Background.jpg" Stretch="Fill"/>
+
+		<!-- Overlay mờ -->
+		<Rectangle Fill="#222222DD"/>
+
+		<!-- Nội dung launcher -->
+		<Grid Margin="20">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="100"/>
+			</Grid.RowDefinitions>
+
+			<!-- Thanh tiêu đề -->
+			<Grid Height="80">
+				<!-- Tăng chiều cao thanh tiêu đề -->
+				<Rectangle Fill="#3d64b5"/>
+				<Grid Margin="20">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+
+					<!-- Tên game -->
+					<TextBlock Text="Xoul's Era"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               FontSize="28" 
+					VerticalAlignment="Center"/>
+
+					<!-- Các logo mạng xã hội -->
+					<StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+								Margin="30,0,0,0"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Spacing="10">
+
+						<!-- GitHub -->
+						<Button Command="{Binding OpenGitHubCommand}" Background="Transparent" BorderThickness="0">
+							<Image Source="/Assets/github.png" Width="40" Height="35"/>
+						</Button>
+
+						<!-- Website -->
+						<Button Command="{Binding OpenWebsiteCommand}" Background="Transparent" BorderThickness="0">
+							<Image Source="/Assets/Web.png" Width="35" Height="35"/>
+						</Button>
+
+						<!-- Facebook -->
+						<Button Command="{Binding OpenFacebookCommand}" Background="Transparent" BorderThickness="0">
+							<Image Source="/Assets/Facebook.png" Width="35" Height="35"/>
+						</Button>
+
+						<!-- Discord -->
+						<Button Command="{Binding OpenDiscordCommand}" Background="Transparent" BorderThickness="0"> 
+							<Image Source="/Assets/Discord.png" Width="35" Height="35"/> 
+						</Button>
+					</StackPanel>
+				</Grid>
+			</Grid>
+
+			<!-- Khu vực chính -->
+			<Grid Grid.Row="1" Margin="10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+
+				<!-- Ảnh sự kiện -->
+				<Rectangle Fill="#555555EE" Margin="10"/>
+
+				<!-- Khu vực nội dung phụ -->
+				<StackPanel Grid.Column="1" Margin="10">
+					<Rectangle Fill="#666666EE" Height="150"/>
+					<Rectangle Fill="#777777EE" Height="150" Margin="0,10,0,0"/>
+				</StackPanel>
+			</Grid>
+
+			<!-- Thanh dưới (Nút Start) -->
+			<Grid Grid.Row="2">
+				<Rectangle Fill="#111111DD"/>
+				<Button Content="Start Game"
+                        Width="200" Height="70"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,90,0"
+                        Background="White"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        CornerRadius="10"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding StartGameCommand}">
+					<Button.Styles>
+						<Style Selector="Button:pointerover">
+							<Setter Property="Background" Value="Black"/>
+							<Setter Property="Foreground" Value="White"/>
+						</Style>
+					</Button.Styles>
+				</Button>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>
